@@ -1,0 +1,546 @@
+L[100L[100005];
+bool check(){
+      // int u;
+          //     for(int i=0;i<=n;i++){
+                //       int opt=0;  u=i+1;
+                    //     for(int j=0;j<(int)AdjList[i].size();j++){
+                          //         if(AdjList[i][j]==u) opt=1;
+                              //         if(AdjList[i][j]==i) return false;
+                                  //         if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                      //         return false;
+                                          //     }
+                                              //     if(opt==0&&i<n) return false;
+                                                  // }
+                                                      for(int i=0;i<n;i++){
+                                                                if(AdjList[i][0]!=i+1) return false;
+                                                                    }
+                                                                        return true;
+}
+bool fun(){
+      int a[n+2]={0};
+          a[0]=1;
+              a[n+1]=1;
+                  int v;
+                      RESET(ans,0);
+                          ans[0]=1;
+                              {
+                                        int k=1;
+                                                       int mn;
+                                                              for(mn=1;mn<=n+1;mn++){
+                                                                           if(a[mn]>0) break;
+                                                                                  }
+                                                                                         for(int j=0;j<AdjList[0].size();j++){
+                                                                                                       v=AdjList[0][j];
+                                                                                                                   if(ans[v]>0) continue;
+                                                                                                                               else if(k<mn)
+                                                                                                                                             {   
+                                                                                                                                                               //cout<<k<<endl;
+                                                                                                                                                                               ans[v]=k;
+                                                                                                                                                                                               a[k]++; k++;
+                                                                                                                                                                                                           }
+                                                                                                                                                                                                                       else {
+                                                                                                                                                                                                                                         return false;
+                                                                                                                                                                                                                                                     }
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                    for(int i=1;i<=n;i++){
+                                                                                                                                                                                                                                                                              int k=ans[i];
+                                                                                                                                                                                                                                                                                     a[ans[i]]--;
+                                                                                                                                                                                                                                                                                            //find minimum
+                                                                                                                                                                                                                                                                                                   int mn;
+                                                                                                                                                                                                                                                                                                          for(mn=1;mn<=n+1;mn++){
+                                                                                                                                                                                                                                                                                                                       if(a[mn]>0) break;
+                                                                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                                                                     for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                                                                                                                                                                                                                                                   v=AdjList[i][j];
+                                                                                                                                                                                                                                                                                                                                                               if(ans[v]>0) continue;
+                                                                                                                                                                                                                                                                                                                                                                           else if(k<mn)
+                                                                                                                                                                                                                                                                                                                                                                                         {   
+                                                                                                                                                                                                                                                                                                                                                                                                           //cout<<k<<endl;
+                                                                                                                                                                                                                                                                                                                                                                                                                           ans[v]=k;
+                                                                                                                                                                                                                                                                                                                                                                                                                                           a[k]++; k++;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                   else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     return false;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+       // cout<<T<<endl;
+           cin>>n>>m;
+               int u,v;
+                   f(i,100005) AdjList[i].clear();
+                       f(i,100005) AL[i].clear();
+                           for(int i=0;i<m;i++){
+                                     sc(u); sc(v);
+                                             AdjList[min(u,v)].pb(max(u,v));
+                                                     AL[max(u,v)].pb(min(u,v));
+                                                             //AL[v].pb(v);
+                                                                 }
+                                                                     for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                         sort(AL[i].begin(),AL[i].end());}
+                                                                                             // if(check()==false){
+                                                                                                   //    cout<<"-1"<<endl;
+                                                                                                       //    continue;
+                                                                                                           // }
+                                                                                                               if(fun()==false){
+                                                                                                                         cout<<"-1"<<endl;
+                                                                                                                                 continue;
+                                                                                                                                     }
+                                                                                                                                         // map<int,int> mp;
+                                                                                                                                             // map<int,int> ::iterator it;
+                                                                                                                                                 // int k=1;
+                                                                                                                                                 
+                                                                                                                                                     // for(int i=1;i<=n;i++){
+                                                                                                                                                           //     it=mp.find(ans[i]);
+                                                                                                                                                               //     if(it==mp.end()){
+                                                                                                                                                                     //         mp[(ans[i])]=k;
+                                                                                                                                                                         //         k++;
+                                                                                                                                                                             //     }
+                                                                                                                                                                                 // }
+                                                                                                                                                                                     for(int i=1;i<=n;i++) cout<<(ans[i])<<" ";
+                                                                                                                                                                                         cout<<endl;
+  }
+  return 0;
+}
+L[100005];
+bool check(){
+      int u;
+              for(int i=0;i<=n;i++){
+                          int opt=0;  u=i+1;
+                                  for(int j=0;j<(int)AdjList[i].size();j++){
+                                                if(AdjList[i][j]==u) opt=1;
+                                                            if(AdjList[i][j]==i) return false;
+                                                                        if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                                                                    return false;
+                                                                                            }
+                                                                                                    if(opt==0&&i<n) return false;
+                                                                                                        }
+                                                                                                            return true;
+}
+bool fun(){
+      int a[n+2]={0};
+          a[0]=1;
+              a[n+1]=1;
+                  int v;
+                      RESET(ans,0);
+                          ans[0]=1;
+                              {
+                                        int k=1;
+                                                       int mn;
+                                                              for(mn=1;mn<=n+1;mn++){
+                                                                           if(a[mn]>0) break;
+                                                                                  }
+                                                                                         for(int j=0;j<AdjList[0].size();j++){
+                                                                                                       v=AdjList[0][j];
+                                                                                                                   if(ans[v]>0) continue;
+                                                                                                                               else if(k<mn)
+                                                                                                                                             {   
+                                                                                                                                                               //cout<<k<<endl;
+                                                                                                                                                                               ans[v]=k;
+                                                                                                                                                                                               a[k]++; k++;
+                                                                                                                                                                                                           }
+                                                                                                                                                                                                                       else {
+                                                                                                                                                                                                                                         return false;
+                                                                                                                                                                                                                                                     }
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                    for(int i=1;i<=n;i++){
+                                                                                                                                                                                                                                                                              int k=ans[i];
+                                                                                                                                                                                                                                                                                     a[ans[i]]--;
+                                                                                                                                                                                                                                                                                            //find minimum
+                                                                                                                                                                                                                                                                                                   int mn;
+                                                                                                                                                                                                                                                                                                          for(mn=1;mn<=n+1;mn++){
+                                                                                                                                                                                                                                                                                                                       if(a[mn]>0) break;
+                                                                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                                                                     for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                                                                                                                                                                                                                                                   v=AdjList[i][j];
+                                                                                                                                                                                                                                                                                                                                                               if(ans[v]>0) continue;
+                                                                                                                                                                                                                                                                                                                                                                           else if(k<mn)
+                                                                                                                                                                                                                                                                                                                                                                                         {   
+                                                                                                                                                                                                                                                                                                                                                                                                           //cout<<k<<endl;
+                                                                                                                                                                                                                                                                                                                                                                                                                           ans[v]=k;
+                                                                                                                                                                                                                                                                                                                                                                                                                                           a[k]++; k++;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                   else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     return false;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+       // cout<<T<<endl;
+           cin>>n>>m;
+               int u,v;
+                   f(i,100005) AdjList[i].clear();
+                       f(i,100005) AL[i].clear();
+                           for(int i=0;i<m;i++){
+                                     sc(u); sc(v);
+                                             AdjList[min(u,v)].pb(max(u,v));
+                                                     AL[max(u,v)].pb(min(u,v));
+                                                             //AL[v].pb(v);
+                                                                 }
+                                                                     for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                         sort(AL[i].begin(),AL[i].end());}
+                                                                                             if(check()==false){
+                                                                                                      cout<<"-1"<<endl;
+                                                                                                             continue;
+                                                                                                                 }
+                                                                                                                     if(fun()==false){
+                                                                                                                               cout<<"-1"<<endl;
+                                                                                                                                       continue;
+                                                                                                                                           }
+                                                                                                                                               // map<int,int> mp;
+                                                                                                                                                   // map<int,int> ::iterator it;
+                                                                                                                                                       // int k=1;
+                                                                                                                                                       
+                                                                                                                                                           // for(int i=1;i<=n;i++){
+                                                                                                                                                                 //     it=mp.find(ans[i]);
+                                                                                                                                                                     //     if(it==mp.end()){
+                                                                                                                                                                           //         mp[(ans[i])]=k;
+                                                                                                                                                                               //         k++;
+                                                                                                                                                                                   //     }
+                                                                                                                                                                                       // }
+                                                                                                                                                                                           for(int i=1;i<=n;i++) cout<<(ans[i])<<" ";
+                                                                                                                                                                                               cout<<endl;
+  }
+  return 0;
+}
+L[100005];
+bool check(){
+      int u;
+              for(int i=0;i<=n;i++){
+                          int opt=0;  u=i+1;
+                                  for(int j=0;j<(int)AdjList[i].size();j++){
+                                                if(AdjList[i][j]==u) opt=1;
+                                                            if(AdjList[i][j]==i) return false;
+                                                                        if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                                                                    return false;
+                                                                                            }
+                                                                                                    if(opt==0&&i<n) return false;
+                                                                                                        }
+                                                                                                            return true;
+}
+bool fun(){
+      int a[n+2]={0};
+          a[0]=2;
+              a[n+1]=1;
+                  int v;
+                      RESET(ans,0);
+                          ans[0]=1;
+                              for(int i=0;i<=n;i++){
+                                        int k=ans[i];
+                                               a[ans[i]]--;
+                                                      //find minimum
+                                                             int mn;
+                                                                    for(mn=1;mn<=n+1;mn++){
+                                                                                 if(a[mn]>0) break;
+                                                                                        }
+                                                                                               //cout<<i<<" "<<mn<<endl;
+                                                                                                      //for(int j=1;j<10;j++) cout<<a[j]<<" ";
+                                                                                                             //cout<<endl;
+                                                                                                                    for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                                  v=AdjList[i][j];
+                                                                                                                                              if(ans[v]>0) continue;
+                                                                                                                                                          else if(k<=mn)
+                                                                                                                                                                        {   
+                                                                                                                                                                                          //cout<<k<<endl;
+                                                                                                                                                                                                          ans[v]=k;
+                                                                                                                                                                                                                          a[k]++; k++;
+                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                  else {
+                                                                                                                                                                                                                                                                    return false;
+                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                                           }
+                                                                                                                                                                                                                                                                                               return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+       // cout<<T<<endl;
+           cin>>n>>m;
+               int u,v;
+                   f(i,100005) AdjList[i].clear();
+                       f(i,100005) AL[i].clear();
+                           for(int i=0;i<m;i++){
+                                     sc(u); sc(v);
+                                             AdjList[min(u,v)].pb(max(u,v));
+                                                     AL[max(u,v)].pb(min(u,v));
+                                                             //AL[v].pb(v);
+                                                                 }
+                                                                     for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                         sort(AL[i].begin(),AL[i].end());}
+                                                                                             if(check()==false){
+                                                                                                       cout<<"-1"<<endl;
+                                                                                                               continue;
+                                                                                                                   }
+                                                                                                                   
+                                                                                                                       map<int,int> mp;
+                                                                                                                           map<int,int> ::iterator it;
+                                                                                                                               int k=1;
+                                                                                                                                   if(fun()==false){
+                                                                                                                                             cout<<"-1"<<endl;
+                                                                                                                                                     continue;
+                                                                                                                                                         }
+                                                                                                                                                             for(int i=1;i<=n;i++){
+                                                                                                                                                                       it=mp.find(ans[i]);
+                                                                                                                                                                               if(it==mp.end()){
+                                                                                                                                                                                             mp[(ans[i])]=k;
+                                                                                                                                                                                                         k++;
+                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                     }
+                                                                                                                                                                                                                         for(int i=1;i<=n;i++) cout<<mp[(ans[i])]<<" ";
+                                                                                                                                                                                                                             cout<<endl;
+  }
+  return 0;
+}
+L[100005];
+bool check(){
+      int u;
+              for(int i=0;i<=n;i++){
+                          int opt=0;  u=i+1;
+                                  for(int j=0;j<(int)AdjList[i].size();j++){
+                                                if(AdjList[i][j]==u) opt=1;
+                                                            if(AdjList[i][j]==i) return false;
+                                                                        if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                                                                    return false;
+                                                                                            }
+                                                                                                    if(opt==0&&i<n) return false;
+                                                                                                        }
+                                                                                                            return true;
+}
+bool fun(){
+      int a[n+2]={0};
+          a[0]=2;
+              a[n+1]=1;
+                  int v;
+                      RESET(ans,0);
+                          for(int i=0;i<=n;i++){
+                                    int k=1;
+                                           a[ans[i]]--;
+                                                  //find minimum
+                                                         int mn;
+                                                                for(mn=1;mn<=n+1;mn++){
+                                                                             if(a[mn]>0) break;
+                                                                                    }
+                                                                                           //cout<<i<<" "<<mn<<endl;
+                                                                                                  //for(int j=1;j<10;j++) cout<<a[j]<<" ";
+                                                                                                         //cout<<endl;
+                                                                                                                for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                              v=AdjList[i][j];
+                                                                                                                                          if(ans[v]>0) continue;
+                                                                                                                                                      else if(k<=mn)
+                                                                                                                                                                    {   
+                                                                                                                                                                                      //cout<<k<<endl;
+                                                                                                                                                                                                      ans[v]=k;
+                                                                                                                                                                                                                      a[k]++; k++;
+                                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                                              else {
+                                                                                                                                                                                                                                                                return false;
+                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                                           return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+        cin>>n>>m;
+            int u,v;
+                f(i,100005) AdjList[i].clear();
+                    f(i,100005) AL[i].clear();
+                        for(int i=0;i<m;i++){
+                                  sc(u); sc(v);
+                                          AdjList[min(u,v)].pb(max(u,v));
+                                                  AL[max(u,v)].pb(min(u,v));
+                                                          //AL[v].pb(v);
+                                                              }
+                                                                  for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                      sort(AL[i].begin(),AL[i].end());}
+                                                                                          //check
+                                                                                              if(check()==false){
+                                                                                                        cout<<"-1"<<endl;
+                                                                                                                continue;
+                                                                                                                    }
+                                                                                                                     
+                                                                                                                         map<int,int> mp;
+                                                                                                                             map<int,int> ::iterator it;
+                                                                                                                                 int k=1;
+                                                                                                                                     if(fun()==false){
+                                                                                                                                               cout<<"-1"<<endl;
+                                                                                                                                                       continue;
+                                                                                                                                                           }
+                                                                                                                                                               for(int i=1;i<=n;i++){
+                                                                                                                                                                         it=mp.find(ans[i]);
+                                                                                                                                                                                 if(it==mp.end()){
+                                                                                                                                                                                               mp[(ans[i])]=k;
+                                                                                                                                                                                                           k++;
+                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                           for(int i=1;i<=n;i++) cout<<mp[(ans[i])]<<" ";
+                                                                                                                                                                                                                               cout<<endl;
+  }
+  return 0;
+}L[100005];
+bool check(){
+      int u;
+              for(int i=0;i<=n;i++){
+                          int opt=0;  u=i+1;
+                                  for(int j=0;j<(int)AdjList[i].size();j++){
+                                                if(AdjList[i][j]==u) opt=1;
+                                                            if(AdjList[i][j]==i) return false;
+                                                                        if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                                                                    return false;
+                                                                                            }
+                                                                                                    if(opt==0&&i<n) return false;
+                                                                                                        }
+                                                                                                            return true;
+}
+bool fun(){
+      int a[n+2]={0};
+          a[0]=2;
+              a[n+1]=1;
+                  int v;
+                      RESET(ans,0);
+                          for(int i=0;i<=n;i++){
+                                    int k=1;
+                                           a[ans[i]]--;
+                                                  //find minimum
+                                                         int mn;
+                                                                for(mn=1;mn<=n+1;mn++){
+                                                                             if(a[mn]>0) break;
+                                                                                    }
+                                                                                           //cout<<i<<" "<<mn<<endl;
+                                                                                                  //for(int j=1;j<10;j++) cout<<a[j]<<" ";
+                                                                                                         //cout<<endl;
+                                                                                                                for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                              v=AdjList[i][j];
+                                                                                                                                          if(ans[v]>0) continue;
+                                                                                                                                                      else if(k<mn)
+                                                                                                                                                                    {   
+                                                                                                                                                                                      //cout<<k<<endl;
+                                                                                                                                                                                                      ans[v]=k;
+                                                                                                                                                                                                                      a[k]++; k++;
+                                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                                              else {
+                                                                                                                                                                                                                                                                return false;
+                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                                           return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+        cin>>n>>m;
+            int u,v;
+                f(i,100005) AdjList[i].clear();
+                    f(i,100005) AL[i].clear();
+                        for(int i=0;i<m;i++){
+                                  sc(u); sc(v);
+                                          AdjList[min(u,v)].pb(max(u,v));
+                                                  AL[max(u,v)].pb(min(u,v));
+                                                          //AL[v].pb(v);
+                                                              }
+                                                                  for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                      sort(AL[i].begin(),AL[i].end());}
+                                                                                          //check
+                                                                                              if(check()==false){
+                                                                                                        cout<<"-1"<<endl;
+                                                                                                                continue;
+                                                                                                                    }
+                                                                                                                    
+                                                                                                                        map<int,int> mp;
+                                                                                                                            map<int,int> ::iterator it;
+                                                                                                                                int k=1;
+                                                                                                                                    if(fun()==false){
+                                                                                                                                              cout<<"-1"<<endl;
+                                                                                                                                                      continue;
+                                                                                                                                                          }
+                                                                                                                                                              for(int i=1;i<=n;i++){
+                                                                                                                                                                        it=mp.find(ans[i]);
+                                                                                                                                                                                if(it==mp.end()){
+                                                                                                                                                                                              mp[(ans[i])]=k;
+                                                                                                                                                                                                          k++;
+                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                          for(int i=1;i<=n;i++) cout<<mp[(ans[i])]<<" ";
+                                                                                                                                                                                                                              cout<<endl;
+  }
+  return 0;
+}
+005];
+bool check(){
+          for(int i=0;i<=n;i++){
+                    for(int j=0;j<(int)AdjList[i].size();j++){
+                                  if(AdjList[i][j]==i) return false;
+                                              if(AdjList[i][j]-i<=AL[(AdjList[i][j])].size()) continue;
+                                                          return false;
+                                                                  }
+                                                                      }
+                                                                          return true;
+}
+int main(){
+  int T;
+  cin>>T;
+  while(T--){
+        cin>>n>>m;
+            int u,v;
+                f(i,100005) AdjList[i].clear();
+                    f(i,100005) AL[i].clear();
+                        for(int i=0;i<m;i++){
+                                  sc(u); sc(v);
+                                          AdjList[min(u,v)].pb(max(u,v));
+                                                  AL[max(u,v)].pb(min(u,v));
+                                                          //AL[v].pb(v);
+                                                              }
+                                                                  for(int i=1;i<=n;i++) {sort(AdjList[i].begin(),AdjList[i].end());
+                                                                                      sort(AL[i].begin(),AL[i].end());}
+                                                                                          //check
+                                                                                              if(check()==false){
+                                                                                                        cout<<"-1"<<endl;
+                                                                                                                continue;
+                                                                                                                    }
+                                                                                                                        int a[n+1]={0};
+                                                                                                                            a[0]=2;
+                                                                                                                                int b[n+1]={0};
+                                                                                                                                    int ans[n+1]={0};
+                                                                                                                                        for(int i=0;i<=n;i++){
+                                                                                                                                                  int k=1;
+                                                                                                                                                         // for(int j=1;j<6;j++) cout<<a[j]<<" ";
+                                                                                                                                                                // cout<<endl;
+                                                                                                                                                                        a[ans[i]]--;
+                                                                                                                                                                               for(int j=0;j<AdjList[i].size();j++){
+                                                                                                                                                                                             v=AdjList[i][j];
+                                                                                                                                                                                                         if(ans[v]>0){
+                                                                                                                                                                                                                           continue;
+                                                                                                                                                                                                                                           a[(ans[v])]++;
+                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                   else{
+                                                                                                                                                                                                                                                                                     while(a[k]!=0) k++;
+                                                                                                                                                                                                                                                                                                     a[k]++;
+                                                                                                                                                                                                                                                                                                                     ans[v]=k;
+                                                                                                                                                                                                                                                                                                                              //       cout<<k<<" "<<v<<endl;
+                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                 }
+                                                                                                                                                                                                                                                                                                                                                     }
+                                                                                                                                                                                                                                                                                                                                                         for(int i=1;i<=n;i++) cout<<ans[i]<<" ";
+                                                                                                                                                                                                                                                                                                                                                             cout<<endl;
+  }
+  return 0;
+t
+}
+

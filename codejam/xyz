@@ -1,0 +1,122 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<int,int> ii;
+typedef vector<ii> vii;
+int main() {
+	// your code goes here
+	int T;
+	cin>>T;
+	while(T--){
+	    string s;
+	    int L,N;
+	    cin>>L>>N;
+	    char grid[N+2][N+3];
+	    int count[N+2][N+2];
+	    int p=0;
+	    memset(count,0,sizeof(count));
+	    cin>>s;
+	/*    //block end
+	    //grid[0].append(N+2,'#');
+	    //string tmp;
+	    for(int i=1;i<=N;i++){
+	        grid[i]+='#';
+	        grid[i]+=cin;
+	        grid[i]+='#';
+	    }
+	    //block end
+	    grid[N+1].append(N+2,'#');
+	    for(int i=0;i<N+2;i++){
+	        cout<<grid[i]<<endl;
+	    }*/
+	    for(int i=0;i<N+2;i++)
+	    grid[0][i]='#';
+	    grid[0][N+2]='\0';
+	    for(int i=1;i<=N;i++){
+	        grid[i][0]='#';
+	        scanf("%s",&grid[i][1]);
+	        grid[i][N+1]='#';
+	        grid[i][N+2]='\0';
+	    }
+	    for(int i=0;i<N+2;i++)
+	    grid[N+1][i]='#';
+	    grid[N+1][N+2]='\0';
+	    for(int i=1;i<=N;i++){
+	        for(int j=1;j<=N;j++)
+	        if(grid[i][j]=='#')p++;
+	    }
+
+	    vii mask;
+	    ii prev(0,0);
+	    for(int i=0;i<s.size();i++){
+	        switch(s[i]){
+	            case 'L':
+	            prev.first--;
+	            mask.push_back(ii(prev));
+	            break;
+	            case 'R':
+	            prev.first++;
+	            mask.push_back(ii(prev));
+	            break;
+	            case 'U':
+	            prev.second--;
+	            mask.push_back(ii(prev));
+	            break;
+	            case 'D':
+	            prev.second++;
+	            mask.push_back(ii(prev));
+	            break;
+	            default:
+	            break;
+	        }
+	    }
+	    int ans=0;
+	    /*for(int i=0;i<mask.size();i++)
+	    cout<<mask[i].first<<" "<<mask[i].second<<endl;*/
+	    if(((p*1.0)/(N*N))<=1.00&&N>1)
+	    {
+	        memset(count,0x3f3f3f,sizeof(count));
+	        for(int i=0;i<N+2;i++){
+	            for(int j=0;j<N+2;j++){
+	                if(grid[i][j]=='#'){
+	                    count[i][j]=0;
+	                    for(int k=0;k<mask.size();k++){
+	                        int u=mask[k].first,v=mask[k].second;
+	                        if((i-v)>=0&&(i-v)<=N+1&&(j-u)>=0&&(j-u)<=N+1){
+	                            if(k<count[i-v][j-u])
+	                            count[i][j]=k;
+	                        
+	                    }
+	                }
+	            }
+	            
+	        }
+	    }
+	    else{
+	    for(int i=1;i<=N;i++){
+	        for(int j=1;j<=N;j++){
+	       //     cout<<i<<" "<<j<<" : "<<endl;
+	            if(grid[i][j]=='#')
+	            continue;
+	            for(int k=0;k<mask.size();k++){
+	                int u=mask[k].first,v=mask[k].second;
+	         //       cout<<i+v<<" "<<j+u<<endl;
+	                if(grid[i+v][j+u]=='#')
+	                break;
+	                count[i][j]++;                
+	            }
+	            ans^=count[i][j];
+	        }
+	    }
+	}
+	    ans=0;
+	    for(int i=1;i<=N;i++){
+	        for(int j=1;j<=N;j++){
+	        ans=ans^count[i][j];
+	        cout<<count[i][j]<<" ";
+	        }
+	        cout<<endl;
+	    }
+	    printf("%d\n",ans);
+	}
+	return 0;
+}
